@@ -77,7 +77,7 @@ type gitLabProject struct {
 type gitLabGetProjectsResponse []gitLabProject
 
 func (provider gitlabHost) getProjectsByUserID(client http.Client, userID int) (repos []repository) {
-	getUserIDURL := provider.APIURL + "/users/" + strconv.Itoa(userID) + "/projects"
+	getUserIDURL := provider.APIURL + "/projects?owned=true"
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*maxRequestTime)
 	defer cancel()
